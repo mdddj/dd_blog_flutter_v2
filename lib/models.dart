@@ -763,3 +763,95 @@ class MonthsModel {
     );
   }
 }
+
+
+
+class TextModelResult {
+  TextModelResult({
+    required this.data,
+    required this.message,
+    required this.state,
+  });
+
+  factory TextModelResult.fromJson(Map<String, dynamic> jsonRes) =>
+      TextModelResult(
+        data: TextModel.fromJson(asT<Map<String, dynamic>>(jsonRes['data'])!),
+        message: asT<String>(jsonRes['message'])!,
+        state: asT<int>(jsonRes['state'])!,
+      );
+
+  TextModel data;
+  String message;
+  int state;
+
+  @override
+  String toString() {
+    return jsonEncode(this);
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'data': data,
+    'message': message,
+    'state': state,
+  };
+
+  TextModelResult copy() {
+    return TextModelResult(
+      data: data.copy(),
+      message: message,
+      state: state,
+    );
+  }
+}
+
+class TextModel {
+  TextModel({
+    required this.context,
+    required this.id,
+    required this.intro,
+    required this.isEncryptionText,
+    required this.name,
+    required this.viewPassword,
+  });
+
+  factory TextModel.fromJson(Map<String, dynamic> jsonRes) => TextModel(
+    context: asT<String>(jsonRes['context'])!,
+    id: asT<int>(jsonRes['id'])!,
+    intro: asT<String>(jsonRes['intro'])!,
+    isEncryptionText: asT<bool>(jsonRes['isEncryptionText'])!,
+    name: asT<String>(jsonRes['name'])!,
+    viewPassword: asT<String>(jsonRes['viewPassword'])!,
+  );
+
+  String context;
+  int id;
+  String intro;
+  bool isEncryptionText;
+  String name;
+  String viewPassword;
+
+  @override
+  String toString() {
+    return jsonEncode(this);
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'context': context,
+    'id': id,
+    'intro': intro,
+    'isEncryptionText': isEncryptionText,
+    'name': name,
+    'viewPassword': viewPassword,
+  };
+
+  TextModel copy() {
+    return TextModel(
+      context: context,
+      id: id,
+      intro: intro,
+      isEncryptionText: isEncryptionText,
+      name: name,
+      viewPassword: viewPassword,
+    );
+  }
+}
