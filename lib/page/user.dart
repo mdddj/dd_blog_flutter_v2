@@ -1,6 +1,7 @@
 import 'package:dd_blog_flutter/config/config.dart';
 import 'package:dd_blog_flutter/widget/avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
@@ -37,7 +38,9 @@ class UserPage extends ConsumerWidget {
 
 
               //统计信息
-              StatisticsComponent()
+              const StatisticsComponent(),
+              _renderMenus()
+
             ],
           ),
         ),
@@ -45,6 +48,32 @@ class UserPage extends ConsumerWidget {
     );
   }
 
+
+  Widget _renderMenus(){
+    return Container(
+      margin: const EdgeInsets.only(top: 12),
+      decoration: const BoxDecoration(
+        color: Colors.white
+      ),
+      child: Column(
+        children: [
+          _renderMenuItem('ds.svg', '打赏'),
+          _renderMenuItem('github.svg', 'Github'),
+          _renderMenuItem('photo.svg', '相册'),
+          _renderMenuItem('about.svg', '关于')
+        ],
+      ),
+    );
+  }
+
+  ///渲染菜单item
+  Widget _renderMenuItem(String svgName,String title,{VoidCallback? onTap}){
+    return ListTile(
+      leading: SvgPicture.asset('assets/svgs/$svgName',width: 20,height: 20,color: Colors.grey,),
+      title: Text(title,style: const TextStyle(color: Colors.blueGrey),),
+      trailing: const Icon(Icons.chevron_right,color: Colors.grey),
+    );
+  }
 }
 
 
@@ -77,10 +106,12 @@ class StatisticsComponent extends ConsumerWidget {
         children: [
           Icon(iconData,size: 14,color: Colors.grey,),
           const SizedBox(width: 2,),
-          Text(title,style: TextStyle(color: Colors.grey),),
+          Text(title,style: const TextStyle(color: Colors.grey),),
         ],
       )
     ],);
   }
+
+
 
 }

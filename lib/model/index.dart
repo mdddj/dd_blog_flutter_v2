@@ -1,5 +1,4 @@
 import 'package:dd_blog_flutter/api.dart';
-import 'package:dd_js_util/api/base.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -26,7 +25,6 @@ class IndexModelProvider extends StateNotifier<IndexState> {
 
 class IndexState with EquatableMixin {
   List<PostData> postData = [];
-
   IndexState({required this.postData});
 
   IndexState copyWith({List<PostData>? postData}) => IndexState(postData: postData ?? []);
