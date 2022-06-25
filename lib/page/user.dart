@@ -1,6 +1,7 @@
 import 'package:dd_blog_flutter/config/config.dart';
 import 'package:dd_blog_flutter/page/text.dart';
 import 'package:dd_blog_flutter/widget/avatar.dart';
+import 'package:dd_js_util/ext/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -48,7 +49,14 @@ class UserPage extends ConsumerWidget {
 
               //统计信息
               const StatisticsComponent(),
-              _renderMenus(context)
+              _renderMenus(context),
+
+              const SizedBox(height: kDefaultPadding),
+              ElevatedButton(
+                  onPressed: () {
+                    'https://github.com/mdddj/dd_blog_flutter_v2'.browser();
+                  },
+                  child: const Text('APP开源地址'))
             ],
           ),
         ),
@@ -62,10 +70,10 @@ class UserPage extends ConsumerWidget {
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
-          _renderMenuItem('ds.svg', '打赏', context,keyName: 'blog-ds'),
-          _renderMenuItem('github.svg', 'Github', context,keyName: 'github'),
-          _renderMenuItem('photo.svg', '相册', context,keyName: 'images'),
-          _renderMenuItem('about.svg', '关于', context,keyName: 'about')
+          _renderMenuItem('ds.svg', '打赏', context, keyName: 'blog-ds'),
+          _renderMenuItem('github.svg', 'Github', context, keyName: 'github'),
+          _renderMenuItem('photo.svg', '相册', context, keyName: 'images'),
+          _renderMenuItem('about.svg', '关于', context, keyName: 'about')
         ],
       ),
     );
@@ -88,7 +96,13 @@ class UserPage extends ConsumerWidget {
       onTap: keyName == null
           ? null
           : () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => TextPage(keyName: keyName,title: title,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => TextPage(
+                            keyName: keyName,
+                            title: title,
+                          )));
             },
     );
   }
